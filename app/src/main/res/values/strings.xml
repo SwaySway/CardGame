@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CardGame</string>
+    <string name="todo">TODO</string>
+    <string name="card1">card1</string>
+    <string name="card2">card2</string>
+    <string name="card3">card3</string>
+    <string name="card4">card4</string>
+</resources>
