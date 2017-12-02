@@ -6,51 +6,84 @@
     android:layout_height="match_parent"
     tools:context="com.example.josue.cardgame.Game">
 
-    <ImageView
-        android:id="@+id/card1"
-        android:layout_width="89dp"
-        android:layout_height="175dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="84dp"
-        android:contentDescription="@string/card1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cardback" />
-
-    <ImageView
-        android:id="@+id/card3"
-        android:layout_width="89dp"
-        android:layout_height="175dp"
-        android:layout_marginBottom="124dp"
-        android:layout_marginStart="92dp"
-        android:contentDescription="@string/card2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/cardback" />
-
-    <ImageView
-        android:id="@+id/card2"
-        android:layout_width="89dp"
-        android:layout_height="175dp"
-        android:layout_marginEnd="96dp"
-        android:layout_marginTop="84dp"
-        android:contentDescription="@string/card3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toEndOf="@+id/card1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cardback" />
-
-    <ImageView
-        android:id="@+id/card4"
-        android:layout_width="89dp"
-        android:layout_height="175dp"
-        android:layout_marginBottom="124dp"
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="265dp"
+        android:layout_height="444dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:contentDescription="@string/card4"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.075"
-        app:layout_constraintStart_toEndOf="@+id/card3"
-        app:srcCompat="@drawable/cardback" />
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.496">
+
+    </GridLayout>
+
+    <Button
+        android:id="@+id/retry"
+        android:layout_width="98dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/newgame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toEndOf="@+id/gridLayout"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.979"
+        tools:text="Try Again" />
+
+    <Button
+        android:id="@+id/newgame"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/endgame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintStart_toEndOf="@+id/gridLayout"
+        tools:text="New Game" />
+
+    <Button
+        android:id="@+id/endgame"
+        android:layout_width="96dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="96dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.692"
+        app:layout_constraintStart_toEndOf="@+id/gridLayout"
+        tools:text="End Game" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toStartOf="@+id/score"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Attempts:" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="45dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/retry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.182"
+        tools:text="0" />
 </android.support.constraint.ConstraintLayout>
