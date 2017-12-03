@@ -3,16 +3,24 @@ package com.example.josue.cardgame;
 import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.*;
 
-public class Game extends AppCompatActivity {
+public class Game extends AppCompatActivity implements View.OnClickListener {
 
     private GridLayout cardlayout;
+    //Buttons
     private Button tryagainBttn;
     private Button newgameBttn;
     private Button endgameBttn;
 
+    private int numofElements;
     private Card[] cards;
+    private int[] cardGraphicsLocation;
+    private int[] cardGraphics;
+    //Cards Used
+    private Card selectedCard1;
+    private Card selectedCard2;
 
 
     @Override
@@ -45,5 +53,8 @@ public class Game extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View view) {
 
+    }
 }

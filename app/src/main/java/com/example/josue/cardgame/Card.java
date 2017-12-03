@@ -1,17 +1,18 @@
 package com.example.josue.cardgame;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.widget.AppCompatImageView;
+import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.TableLayout;
 
 /**
  * Created by josue on 12/1/2017.
  */
 
-public class Card extends AppCompatImageView {
+@SuppressLint({"AppCompatCustomView", "ViewConstructor"})
+public class Card extends Button{
 
     private int row;
     private int column;
@@ -31,8 +32,17 @@ public class Card extends AppCompatImageView {
         column = c;
         card_id = id;
 
+        cardfront = ResourcesCompat.getDrawable(getResources(), card_id, null);
         cardback = ResourcesCompat.getDrawable(getResources(), R.drawable.cardback, null);
+        //Sets Card to the cardback
+        setBackground(cardback);
+        //Determines layout within the grid
         GridLayout.LayoutParams tempParams = new GridLayout.LayoutParams(GridLayout.spec(r), GridLayout.spec(c));
+        //Sets Card Size
+        tempParams.width = (int) getResources().getDisplayMetrics().density * 50;
+        tempParams.height = (int) getResources().getDisplayMetrics().density * 50;
+
+        setLayoutParams(tempParams);
     }
 
 
@@ -50,7 +60,7 @@ public class Card extends AppCompatImageView {
 
     public void flip(){
         if(isMatched){
-            //code portion for matching cards
+            return;
         }
         if(isFlipped)
         {
@@ -59,7 +69,7 @@ public class Card extends AppCompatImageView {
         }
         else{
             setBackground(cardfront);
-            isFlipped = false;
+            isFlipped = true;
         }
     }
 
