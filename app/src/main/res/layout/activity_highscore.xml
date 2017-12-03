@@ -13,67 +13,21 @@
         android:text="HIGHSCORES"
         android:textSize="30sp"
         android:layout_marginTop="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/highScore1"
+        app:layout_constraintBottom_toTopOf="@+id/highScores"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/highScore1"
+        android:id="@+id/highScores"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="highscore1"
         android:textSize="20sp"
         android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/highScore2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
-
-    <TextView
-        android:id="@+id/highScore2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/highScore3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="highscore2"
-        />
-
-    <TextView
-        android:id="@+id/highScore3"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textSize="20sp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/highScore4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="highscore3" />
-
-    <TextView
-        android:id="@+id/highScore4"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textSize="20sp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/highScore5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="highscore4"/>
-
-    <TextView
-        android:id="@+id/highScore5"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textSize="20sp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="highscore5"/>
 
 
 </android.support.constraint.ConstraintLayout>

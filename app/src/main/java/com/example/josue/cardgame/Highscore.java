@@ -27,21 +27,17 @@ public class Highscore extends AppCompatActivity {
         setContentView(R.layout.activity_highscore);
 
         TextView highscoreLabel = (TextView) findViewById(R.id.highscoreLabel);
-        TextView highscore1 = (TextView) findViewById(R.id.highScore1);
-        TextView highscore2 = (TextView) findViewById(R.id.highScore2);
-        TextView highscore3 = (TextView) findViewById(R.id.highScore3);
-        TextView highscore4 = (TextView) findViewById(R.id.highScore4);
-        TextView highscore5 = (TextView) findViewById(R.id.highScore5);
+        TextView highScores = (TextView) findViewById(R.id.highScores);
 
         int score = getIntent().getIntExtra("SCORE", 0);
+        String name = getIntent().getStringExtra("NAME");
+        loadScore();
+        scores.add(new Score(score, name));
+        updateScore();
+        highScores.setText(getHighscores());
+//        SharedPreferences settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
+//        int highScore = settings.getInt("HIGH_SCORE", 0);
 
-        SharedPreferences settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
-        int highScore = settings.getInt("HIGH_SCORE", 0);
-
-        if(score > highScore){
-            //Since new score is greater than the highscore, update in the file with the new score
-
-        }
     }
 
     /**
@@ -77,12 +73,13 @@ public class Highscore extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }finally{
-            if(oos != null)[
-            try {
-                oos.flush();
-                oos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(oos != null) {
+                try {
+                    oos.flush();
+                    oos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
