@@ -30,7 +30,7 @@ public class MainMenu extends AppCompatActivity {
 
     public void startGame(View view) {
         //opens activity that asks user for how many cards they are choosing
-        Intent gameIntent = new Intent(MainMenu.this, Game.class);
+        Intent gameIntent = new Intent(MainMenu.this, GameDifficultyActivity.class);
         startActivity(gameIntent);
     }
 

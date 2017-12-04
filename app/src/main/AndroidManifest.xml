@@ -17,7 +17,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".Game" />
-        <activity android:name=".Highscore"/>
+        <activity android:name=".Highscore" />
+        <activity
+            android:name=".GameDifficultyActivity"
+            android:parentActivityName=".MainMenu">
+        </activity>
     </application>
 
 </manifest>

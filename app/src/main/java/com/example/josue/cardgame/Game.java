@@ -60,8 +60,8 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
 
 
         //for initial testing we trying out a 4x4 card layout
-        numofElements = 4;
-        rowSize = numofElements/2;
+        numofElements = 6;
+        rowSize = 2;
         columnSize = numofElements/2;
         cardGraphicsLocation = new int[numofElements];
         cards = new Card[numofElements];
@@ -72,7 +72,8 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
 
         for(int row = 0; row < rowSize; row++){
             for(int column = 0; column < columnSize; column++){
-                Card newCard = new Card(this, row, column, cardGraphics.get(cardGraphicsLocation[row*columnSize + column ]));
+                int tempIndex = row*columnSize + column;
+                Card newCard = new Card(this, row, column, cardGraphics.get(cardGraphicsLocation[ tempIndex ]));
                 newCard.setId(View.generateViewId());
                 newCard.setOnClickListener(this);
                 cards[row * columnSize + column] = newCard;
@@ -120,20 +121,20 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-
-    private void determineOrientation() {
-        //default code format for a 4x4 in portrait in in landscape
-        //code should be able to handle 4-20 (even only)
-        numofElements = cardlayout.getColumnCount() * cardlayout.getRowCount();
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-            cardlayout.setColumnCount(4);
-            cardlayout.setRowCount(2);
-        }
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
-            cardlayout.setColumnCount(2);
-            cardlayout.setRowCount(2);
-        }
-    }
+//
+//    private void determineOrientation() {
+//        //default code format for a 4x4 in portrait in in landscape
+//        //code should be able to handle 4-20 (even only)
+//        numofElements = cardlayout.getColumnCount() * cardlayout.getRowCount();
+//        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+//            cardlayout.setColumnCount(4);
+//            cardlayout.setRowCount(2);
+//        }
+//        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+//            cardlayout.setColumnCount(2);
+//            cardlayout.setRowCount(2);
+//        }
+//    }
 
 
     @Override

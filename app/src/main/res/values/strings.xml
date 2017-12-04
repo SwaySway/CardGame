@@ -6,4 +6,5 @@
     <string name="card3">card3</string>
     <string name="card4">card4</string>
     <string name="logo">logo</string>
+    <string name="choose_number_of_cards">Choose Number of Cards!</string>
 </resources>
