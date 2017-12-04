@@ -1,7 +1,11 @@
 package com.example.josue.cardgame;
 
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.nfc.Tag;
 import android.os.Handler;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +31,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
      */
     private int columnSize;
     private int rowSize;
+    private int winCount = 0;
     //Variables used for tracking
     private int numofElements;
     private Card[] cards;
@@ -36,7 +41,10 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     private Card selectedCard1;
     private Card selectedCard2;
     //number used to store score
-    private int score;
+    private int score = 0;
+
+    //Save State
+
 
     //check used to cancel user input while flipping card
     private boolean isBusy = false;
@@ -47,6 +55,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         //sets up format
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
         //connects variables to items in the xml loading from resources
         cardlayout = findViewById(R.id.gridLayout);
         tryagainBttn = findViewById(R.id.retry);
@@ -58,26 +67,24 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         endgameBttn.setText("End Game");
         scoreCount.setText("Score: ");
 
-
-        //for initial testing we trying out a 4x4 card layout
-        numofElements = 6;
-        rowSize = 2;
-        columnSize = numofElements/2;
+        //grabs number of cards from the seek bar
+        numofElements = getIntent().getIntExtra("numofElements", 0);
+        determineRC();
         cardGraphicsLocation = new int[numofElements];
         cards = new Card[numofElements];
-
         //loads cards from resources into array
         loadCards();
         shuffleCards();
-
         for(int row = 0; row < rowSize; row++){
             for(int column = 0; column < columnSize; column++){
                 int tempIndex = row*columnSize + column;
-                Card newCard = new Card(this, row, column, cardGraphics.get(cardGraphicsLocation[ tempIndex ]));
-                newCard.setId(View.generateViewId());
-                newCard.setOnClickListener(this);
-                cards[row * columnSize + column] = newCard;
-                cardlayout.addView(newCard);
+               if(!(tempIndex >= numofElements)){
+                   Card newCard = new Card(this, row, column, cardGraphics.get(cardGraphicsLocation[tempIndex]));
+                   newCard.setId(View.generateViewId());
+                   newCard.setOnClickListener(this);
+                   cards[row * columnSize + column] = newCard;
+                   cardlayout.addView(newCard);
+               }
             }
         }
 
@@ -88,6 +95,48 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
             NOTE: onconfiguration change will hanlde if orientation changes
         */
         //determineOrientation();
+    }
+
+    private void determineRC(){
+        switch(numofElements){
+            case 4:
+                columnSize = 2;
+                rowSize = 2;
+                break;
+            case 6:
+                columnSize = 4;
+                rowSize = 4;
+                break;
+            case 8:
+                columnSize = 4;
+                rowSize = 2;
+                break;
+            case 10:
+                columnSize = 4;
+                rowSize = 4;
+                break;
+            case 12:
+                columnSize = 3;
+                rowSize  = 4;
+                break;
+            case 14:
+                columnSize = 4;
+                rowSize = 4;
+                break;
+            case 16:
+                columnSize = 4;
+                rowSize = 4;
+                break;
+            case 18:
+                columnSize = 4;
+                rowSize = 4;
+                break;
+            case 20:
+                columnSize = 4;
+                rowSize = 5;
+                break;
+        }
+
     }
 
     //method used to store cards in a data structure
@@ -157,20 +206,28 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
            }
            //if user get's a match!
            if(selectedCard1.getCard_id() == currentCard.getCard_id()){
-               currentCard.flip();
 
+               currentCard.flip();
                currentCard.setMatch(true);
                selectedCard1.setMatch(true);
-
                selectedCard1.setEnabled(false);
                currentCard.setEnabled(false);
-
                selectedCard1 = null;
+               score++;
+               winCount++;
+               if(winCount == (numofElements/2)){
+                   Intent newIntent = new Intent(Game.this, WinGameActivity.class);
+                   newIntent.putExtra("Score", score);
+                   startActivity(newIntent);
+               }
                return;
            }
            //got the matches wrong
            //so we need to show the user
            else{
+               if(score > 0){
+                   score = score - 1;
+               }
                selectedCard2 = currentCard;
                selectedCard2.flip();
                isBusy = true;

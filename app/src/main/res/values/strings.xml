@@ -7,4 +7,10 @@
     <string name="card4">card4</string>
     <string name="logo">logo</string>
     <string name="choose_number_of_cards">Choose Number of Cards!</string>
+    <string name="congrats">Congrats!</string>
+    <string name="enm">Enter your name!</string>
+    <string name="savescore">Save your Score!</string>
+    <string name="finalscore">Score: </string>
+    <string name="name">Name</string>
+    <string name="submit">Submit</string>
 </resources>

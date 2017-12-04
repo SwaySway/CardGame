@@ -20,8 +20,8 @@
         <activity android:name=".Highscore" />
         <activity
             android:name=".GameDifficultyActivity"
-            android:parentActivityName=".MainMenu">
-        </activity>
+            android:parentActivityName=".MainMenu"></activity>
+        <activity android:name=".WinGameActivity"></activity>
     </application>
 
 </manifest>

@@ -6,24 +6,9 @@
     android:layout_height="match_parent"
     tools:context="com.example.josue.cardgame.Game">
 
-    <GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="332dp"
-        android:layout_height="392dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/newgame"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </GridLayout>
-
     <Button
         android:id="@+id/retry"
-        android:layout_width="98dp"
+        android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
@@ -36,8 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/endgame"
         app:layout_constraintStart_toEndOf="@+id/retry"
@@ -45,7 +30,7 @@
 
     <Button
         android:id="@+id/endgame"
-        android:layout_width="96dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -55,17 +40,34 @@
 
     <TextView
         android:id="@+id/scoreTitle"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
+        android:layout_width="141dp"
+        android:layout_height="25dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintHorizontal_bias="0.971"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         tools:text="Score:" />
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/newgame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+    </GridLayout>
 
 </android.support.constraint.ConstraintLayout>

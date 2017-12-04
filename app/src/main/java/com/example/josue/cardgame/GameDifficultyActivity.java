@@ -1,10 +1,12 @@
 package com.example.josue.cardgame;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -14,6 +16,7 @@ public class GameDifficultyActivity extends AppCompatActivity {
     private SeekBar seekbar;
     private TextView seekIndicator;
     private Button startGame;
+    private int numofCards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +24,11 @@ public class GameDifficultyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_difficulty_acitivity);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         seekbar = findViewById(R.id.seekgamedifficulty);
+        startGame = findViewById(R.id.launchGame);
+        startGame.setText("Start!");
         seekbar.setProgress(0);
         seekbar.incrementProgressBy(2);
-        seekbar.setMax(16);
+        seekbar.setMax(16 );
         seekIndicator = findViewById(R.id.seekText);
         seekIndicator.setText(String.valueOf(seekbar.getProgress()+4));
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -32,6 +37,7 @@ public class GameDifficultyActivity extends AppCompatActivity {
                 i = i+4;
                 i = i/2;
                 i = i * 2;
+                numofCards = i;
                 seekIndicator.setText(String.valueOf(i));
             }
 
@@ -45,6 +51,13 @@ public class GameDifficultyActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void launchGame(View view){
+        Intent newIntent = new Intent(GameDifficultyActivity.this, Game.class);
+        newIntent.putExtra("numofElements", numofCards);
+        startActivity(newIntent);
+
     }
 
     @Override
