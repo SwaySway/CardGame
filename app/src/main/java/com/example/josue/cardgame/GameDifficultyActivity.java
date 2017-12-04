@@ -31,6 +31,7 @@ public class GameDifficultyActivity extends AppCompatActivity {
         seekbar.setMax(16 );
         seekIndicator = findViewById(R.id.seekText);
         seekIndicator.setText(String.valueOf(seekbar.getProgress()+4));
+        numofCards = seekbar.getProgress()+4;
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
