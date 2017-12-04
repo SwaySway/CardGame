@@ -65,7 +65,7 @@
         tools:text="End Game" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/scoreTitle"
         android:layout_width="70dp"
         android:layout_height="30dp"
         android:layout_marginEnd="8dp"

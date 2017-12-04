@@ -39,8 +39,8 @@ public class Card extends Button{
         //Determines layout within the grid
         GridLayout.LayoutParams tempParams = new GridLayout.LayoutParams(GridLayout.spec(r), GridLayout.spec(c));
         //Sets Card Size
-        tempParams.width = (int) getResources().getDisplayMetrics().density * 50;
-        tempParams.height = (int) getResources().getDisplayMetrics().density * 50;
+        tempParams.width = (int) getResources().getDisplayMetrics().density * 100;
+        tempParams.height = (int) getResources().getDisplayMetrics().density * 100;
 
         setLayoutParams(tempParams);
     }

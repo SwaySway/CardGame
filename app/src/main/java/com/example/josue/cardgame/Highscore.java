@@ -29,7 +29,7 @@ public class Highscore extends AppCompatActivity {
         TextView highscoreLabel = (TextView) findViewById(R.id.highscoreLabel);
         TextView highScores = (TextView) findViewById(R.id.highScores);
 
-        int score = getIntent().getIntExtra("SCORE", 0);
+        int score = getIntent().getIntExtra("Score", 0);
         String name = getIntent().getStringExtra("NAME");
         loadScore();
         scores.add(new Score(score, name));
