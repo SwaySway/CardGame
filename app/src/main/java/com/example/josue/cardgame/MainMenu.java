@@ -21,7 +21,7 @@ public class MainMenu extends AppCompatActivity {
         highscoreActivity = findViewById(R.id.highscoreBttn);
         musicToggle = findViewById(R.id.musictoggle);
         startGame.setText("Start Game");
-        highscoreActivity.setText("Highscores");
+        highscoreActivity.setText("Highscores ");
         //Changed text for on and off
         musicToggle.setTextOff("Music Off");
         musicToggle.setTextOn("Music On");

@@ -56,7 +56,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         tryagainBttn.setText("Try Again");
         newgameBttn.setText("New Game");
         endgameBttn.setText("End Game");
-        scoreCount.setText("Attempts: ");
+        scoreCount.setText("Score: ");
 
 
         //for initial testing we trying out a 4x4 card layout
