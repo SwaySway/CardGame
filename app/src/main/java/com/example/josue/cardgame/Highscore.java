@@ -1,7 +1,5 @@
 package com.example.josue.cardgame;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -18,8 +16,8 @@ public class Highscore extends AppCompatActivity {
 
     private ArrayList<Score> scores = new ArrayList<Score>();
 
-    ObjectInputStream ois = null;
-    ObjectOutputStream oos = null;
+    private ObjectInputStream ois = null;
+    private ObjectOutputStream oos = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +43,7 @@ public class Highscore extends AppCompatActivity {
      */
     public void loadScore(){
         try {
-            ois = new ObjectInputStream(new FileInputStream("highscore.txt"));
+            ois = new ObjectInputStream(new FileInputStream("assets/highscore.txt"));
             scores = (ArrayList<Score>) ois.readObject();
         } catch (IOException e) {
             e.printStackTrace();
@@ -68,7 +66,7 @@ public class Highscore extends AppCompatActivity {
      */
     public void updateScore(){
         try {
-            oos = new ObjectOutputStream(new FileOutputStream("highscore.txt"));
+            oos = new ObjectOutputStream(new FileOutputStream("assets/highscore.txt"));
             oos.writeObject(scores);
         } catch (IOException e) {
             e.printStackTrace();
