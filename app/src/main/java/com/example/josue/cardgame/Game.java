@@ -16,11 +16,19 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     private Button newgameBttn;
     private Button endgameBttn;
 
+    /*
+        Variables used to determine
+            -column size
+            -row size
+     */
+    private int columnSize;
+    private int rowSize;
+    //Variables used for tracking
     private int numofElements;
     private Card[] cards;
     private int[] cardGraphicsLocation;
     private ArrayList<Integer> cardGraphics;
-    //Cards Used
+    //Cards Used when selected
     private Card selectedCard1;
     private Card selectedCard2;
 
@@ -67,9 +75,12 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         cardGraphics.add(R.drawable.card10);
     }
 
+    //shuffles cards in the new array
     private void shuffleCards(){
+        cardGraphicsLocation = new int[numofElements];
 
-        //shuffles cards
+
+
 
     }
 
