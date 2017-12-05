@@ -17,6 +17,7 @@ public class GameDifficultyActivity extends AppCompatActivity {
     private TextView seekIndicator;
     private Button startGame;
     private int numofCards;
+    private int state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class GameDifficultyActivity extends AppCompatActivity {
         seekbar.setProgress(0);
         seekbar.incrementProgressBy(2);
         seekbar.setMax(16 );
+        state = getIntent().getIntExtra("State", 0);
         seekIndicator = findViewById(R.id.seekText);
         seekIndicator.setText(String.valueOf(seekbar.getProgress()+4));
         numofCards = seekbar.getProgress()+4;
@@ -55,9 +57,16 @@ public class GameDifficultyActivity extends AppCompatActivity {
     }
 
     public void launchGame(View view){
-        Intent newIntent = new Intent(GameDifficultyActivity.this, Game.class);
-        newIntent.putExtra("numofElements", numofCards);
-        startActivity(newIntent);
+        if(state == 0) {
+            Intent newIntent = new Intent(GameDifficultyActivity.this, Game.class);
+            newIntent.putExtra("numofElements", numofCards);
+            startActivity(newIntent);
+        }
+        else{
+            Intent newIntent = new Intent(GameDifficultyActivity.this, Highscore.class);
+            newIntent.putExtra("filenum", numofCards);
+            startActivity(newIntent);
+        }
 
     }
 
