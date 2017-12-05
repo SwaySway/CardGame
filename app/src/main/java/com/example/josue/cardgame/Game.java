@@ -21,8 +21,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     private Button tryagainBttn;
     private Button newgameBttn;
     private Button endgameBttn;
-    //Neccessary Textview
-    private TextView scoreCount;
+
     /*
         Variables used to determine
             -column size
@@ -48,6 +47,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
 
     //check used to cancel user input while flipping card
     private boolean isBusy = false;
+    protected static boolean flag = true;
 
 
     @Override
@@ -61,11 +61,11 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         tryagainBttn = findViewById(R.id.retry);
         newgameBttn = findViewById(R.id.newgame);
         endgameBttn = findViewById(R.id.endgame);
-        scoreCount = findViewById(R.id.scoreTitle);
         tryagainBttn.setText("Try Again");
         newgameBttn.setText("New Game");
         endgameBttn.setText("End Game");
-        scoreCount.setText("Score: ");
+
+
 
         //grabs number of cards from the seek bar
         numofElements = getIntent().getIntExtra("numofElements", 0);
@@ -95,6 +95,10 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
             NOTE: onconfiguration change will hanlde if orientation changes
         */
         //determineOrientation();
+    }
+
+    public void onConfigurationChanged(Configuration newConfig){
+
     }
 
     private void determineRC(){
@@ -132,8 +136,8 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                 rowSize = 4;
                 break;
             case 20:
-                columnSize = 4;
-                rowSize = 5;
+                columnSize = 5;
+                rowSize = 4;
                 break;
         }
 
