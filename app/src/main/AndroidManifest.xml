@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.josue.cardgame">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,11 +26,9 @@
         <activity android:name=".Highscore" />
         <activity
             android:name=".GameDifficultyActivity"
-            android:parentActivityName=".MainMenu"></activity>
-        <activity android:name=".WinGameActivity"></activity>
+            android:parentActivityName=".MainMenu" />
+        <activity android:name=".WinGameActivity" />
+        <service android:enabled="true" android:name=".BGMService"/>
     </application>
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
 
 </manifest>

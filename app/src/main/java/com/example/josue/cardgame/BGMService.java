@@ -29,6 +29,7 @@ BGMService extends Service {
         player = MediaPlayer.create(this, R.raw.bgm);
         player.setLooping(true); // Set looping
         player.setVolume(100,100);
+        //player.start();
 
     }
     // This suppress comment is the only thing keeping the method from being uncompilable
@@ -37,7 +38,7 @@ BGMService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         player.start();
         // This will start the player with the initialization of the game
-        return START_STICKY;
+        return 1;
     }
 
     // I think this is unnecessary since we aren't binding anything

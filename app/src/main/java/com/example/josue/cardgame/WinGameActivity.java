@@ -22,6 +22,7 @@ public class WinGameActivity extends AppCompatActivity {
 
     private TextView scoreView;
     private EditText nameField;
+    private String filename;
     private Button submit;
     private int score;
     private ArrayList<Score> scores = new ArrayList<Score>();
@@ -37,6 +38,8 @@ public class WinGameActivity extends AppCompatActivity {
         submit = findViewById(R.id.submit);
         score = getIntent().getIntExtra("Score", 0);
         String result = "Score: " + String.valueOf(score)+"!";
+        int cards = getIntent().getIntExtra("NumofCards", 0);
+        filename = "highscore"+String.valueOf(cards);
         scoreView.setText(result);
         nameField.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +73,7 @@ public class WinGameActivity extends AppCompatActivity {
     }
 
     private void finalScore(){
-      //write to file
+      //write to file use filename string for name of file
 
     }
 
