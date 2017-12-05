@@ -65,6 +65,7 @@ public class WinGameActivity extends AppCompatActivity {
 
     private void backtoMainMenu(){
         Intent newIntent = new Intent(WinGameActivity.this, MainMenu.class);
+
         startActivity(newIntent);
     }
 
