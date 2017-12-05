@@ -45,15 +45,6 @@ BGMService extends Service {
         return null;
     }
 
-    // Also unnecessary but won't delete until success is confirmed
-    public void onStop() {
-
-    }
-    // Also unnecessary but won't delete until success is confirmed
-    public void onPause() {
-
-    }
-
     @Override
     // Called when the music toggle is set to "off"
     public void onDestroy() {
