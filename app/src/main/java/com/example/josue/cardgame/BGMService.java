@@ -10,21 +10,19 @@ import android.media.MediaPlayer;
  * Created by josue on 12/4/2017.
  */
 
-public class BGMService extends Service {
+public class
+BGMService extends Service {
 
     private static final String TAG = null;
     MediaPlayer player;
 
+    // This method binds a service with an activity, so returning null
+    // tells us that we don't want the music bound to any one activity
+    // (we'll be using the music toggle in the main menu)
     public IBinder onBind(Intent i){
         return null;
     }
 
-//public void onCreate(){
-//super.onCreate();
-//
-//
-//}
-//
     @Override
     public void onCreate() {
         super.onCreate();
@@ -38,30 +36,35 @@ public class BGMService extends Service {
     @SuppressLint("WrongConstant")
     public int onStartCommand(Intent intent, int flags, int startId) {
         player.start();
-        return 1;
+        // This will start the player with the initialization of the game
+        return START_STICKY;
     }
 
-    public void onStart(Intent intent, int startId) {
-        // TO DO
-    }
+    // I think this is unnecessary since we aren't binding anything
     public IBinder onUnBind(Intent arg0) {
-        // TO DO Auto-generated method
         return null;
     }
 
+    // Also unnecessary but won't delete until success is confirmed
     public void onStop() {
 
     }
+    // Also unnecessary but won't delete until success is confirmed
     public void onPause() {
 
     }
+
     @Override
+    // Called when the music toggle is set to "off"
     public void onDestroy() {
         player.stop();
+        // Release the resources the app is using for playing media
         player.release();
     }
 
     @Override
+    // A consideration for when the RAM is too low to execute tasks efficiently,
+    // will check later
     public void onLowMemory() {
 
     }
