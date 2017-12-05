@@ -32,7 +32,7 @@ public class MainMenu extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
                     //music on
-                    startService(new Intent(this, BGMService.class));
+                    startService(new Intent(MainMenu.this, BGMService.class));
                 }else{
                     // music off
                     // stopService()

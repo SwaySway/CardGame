@@ -1,8 +1,10 @@
 package com.example.josue.cardgame;
 
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -22,19 +24,33 @@ public class Highscore extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_highscore);
+        setContentView(R.layout.activity_main);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
-        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        setupViewPager(mViewPager);
+        setupViewPager();
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_highscore);
+//
+//        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+//
+//        mViewPager = (ViewPager) findViewById(R.id.container);
+//        setupViewPager(mViewPager);
     }
 
-    private void setupViewPager(ViewPager viewPager){
+    private void setupViewPager(){
+
+        mViewPager = (ViewPager) findViewById(R.id.pager);
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-//        adapter.addFragment(new Tab1Fragment(), "2X2");
-//        adapter.addFragment(new Tab2Fragment(), "4X4");
-//        adapter.addFragment(new Tab3Fragment(), "8X8");
-        viewPager.setAdapter(adapter);
+        mViewPager.setAdapter(adapter);
+
+        TabLayout mTabLayout = (TabLayout) findViewById(R.id.tab);
+        mTabLayout.setupWithViewPager(mViewPager);
+
+//        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
+////        adapter.addFragment(new Tab1Fragment(), "2X2");
+////        adapter.addFragment(new Tab2Fragment(), "4X4");
+////        adapter.addFragment(new Tab3Fragment(), "8X8");
+//        viewPager.setAdapter(adapter);
     }
 }
