@@ -237,6 +237,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     public void endGame(View view) {
         Intent newIntent = new Intent(Game.this, WinGameActivity.class);
         newIntent.putExtra("Score", score);
+        newIntent.putExtra("NumofCards", numofElements);
         startActivity(newIntent);
     }
 
@@ -274,6 +275,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                if(winCount == (numofElements/2)){
                    Intent newIntent = new Intent(Game.this, WinGameActivity.class);
                    newIntent.putExtra("Score", score);
+                   newIntent.putExtra("NumofCards", numofElements);
                    startActivity(newIntent);
                }
                return;
