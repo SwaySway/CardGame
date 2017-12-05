@@ -21,14 +21,17 @@
         </activity>
         <activity
             android:name=".Game"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            />
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity android:name=".Highscore" />
         <activity
             android:name=".GameDifficultyActivity"
             android:parentActivityName=".MainMenu" />
         <activity android:name=".WinGameActivity" />
-        <service android:enabled="true" android:name=".BGMService"/>
+
+        <service
+            android:name=".BGMService"
+            android:enabled="true" />
+
     </application>
 
 </manifest>
