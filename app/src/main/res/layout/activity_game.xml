@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:configChanges="orientation|screenSize"
     tools:context="com.example.josue.cardgame.Game">
 
     <Button
@@ -13,6 +12,8 @@
         android:layout_height="48dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
+        android:clickable="true"
+        android:onClick="tryAgain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Try Again" />
@@ -24,6 +25,9 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
+        android:clickable="true"
+
+        android:onClick="newGame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/endgame"
         app:layout_constraintStart_toEndOf="@+id/retry"
@@ -35,6 +39,8 @@
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:onClick="endGame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="End Game" />

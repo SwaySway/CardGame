@@ -8,10 +8,13 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Random;
 
 public class Game extends AppCompatActivity implements View.OnClickListener {
@@ -34,6 +37,8 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
     //Variables used for tracking
     private int numofElements;
     private Card[] cards;
+    private Card[] cardsLayout;
+    private ArrayList<Card> cardQ;
     private int[] cardGraphicsLocation;
     private ArrayList<Integer> cardGraphics;
     //Cards Used when selected
@@ -64,42 +69,76 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         tryagainBttn.setText("Try Again");
         newgameBttn.setText("New Game");
         endgameBttn.setText("End Game");
-
-
+        cardQ = new ArrayList<Card>();
+        if(flag){
+            Log.d("ONCREATE", "flag is true");
+        }
 
         //grabs number of cards from the seek bar
         numofElements = getIntent().getIntExtra("numofElements", 0);
         determineRC();
         cardGraphicsLocation = new int[numofElements];
         cards = new Card[numofElements];
+        cardsLayout = new Card[numofElements];
         //loads cards from resources into array
         loadCards();
         shuffleCards();
+
         for(int row = 0; row < rowSize; row++){
             for(int column = 0; column < columnSize; column++){
                 int tempIndex = row*columnSize + column;
-               if(!(tempIndex >= numofElements)){
-                   Card newCard = new Card(this, row, column, cardGraphics.get(cardGraphicsLocation[tempIndex]));
-                   newCard.setId(View.generateViewId());
-                   newCard.setOnClickListener(this);
-                   cards[row * columnSize + column] = newCard;
-                   cardlayout.addView(newCard);
-               }
+                if(!(tempIndex >= numofElements)){
+                    Card newCard = new Card(this, row, column, cardGraphics.get(cardGraphicsLocation[tempIndex]));
+                    cardQ.add(newCard);
+                    newCard.setId(View.generateViewId());
+                    newCard.setOnClickListener(this);
+                    cards[row * columnSize + column] = newCard;
+                    cardlayout.addView(newCard);
+                }
             }
         }
-
-        /*
-            determine orientation is for the first initial try this means this will
-            accordingly handle the amount of rows and columns based on orientation
-
-            NOTE: onconfiguration change will hanlde if orientation changes
-        */
-        //determineOrientation();
     }
-
+    @Override
     public void onConfigurationChanged(Configuration newConfig){
+        super.onConfigurationChanged(newConfig);
+        Log.d("ONCONFIGCHANGE", "CALLED");
+        flag = false;
+        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            if(numofElements > 8) {
+                cardlayout.removeAllViews();
+                for(int row = 0; row < 3; row++){
+                    for(int column = 0; column < 6; column++){
+                        int tempIndex = row*6 + column;
+                        if(!(tempIndex >= numofElements)){
+                            Card tempCard = cardQ.remove(0);
+                            tempCard.changetoLandscape(row, column);
+                            cardQ.add(tempCard);
+                            cardlayout.addView(tempCard);
+                        }
+                    }
+                }
+            }
+            }
 
-    }
+        else if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            if(numofElements > 8) {
+                cardlayout.removeAllViews();
+                for(int row = 0; row < rowSize; row++){
+                    for(int column = 0; column < columnSize; column++){
+                        int tempIndex = row*columnSize + column;
+                        if(!(tempIndex >= numofElements)){
+                            Card tempCard = cardQ.remove(0);
+                            tempCard.changetoPortait(row, column);
+                            cardQ.add(tempCard);
+                            cardlayout.addView(tempCard);
+                        }
+                    }
+                }
+                }
+
+                }
+            }
+
 
     private void determineRC(){
         switch(numofElements){
@@ -174,20 +213,33 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-//
-//    private void determineOrientation() {
-//        //default code format for a 4x4 in portrait in in landscape
-//        //code should be able to handle 4-20 (even only)
-//        numofElements = cardlayout.getColumnCount() * cardlayout.getRowCount();
-//        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-//            cardlayout.setColumnCount(4);
-//            cardlayout.setRowCount(2);
-//        }
-//        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
-//            cardlayout.setColumnCount(2);
-//            cardlayout.setRowCount(2);
-//        }
-//    }
+    public void tryAgain(View view){
+        if(selectedCard2 == null && selectedCard1 != null){
+            selectedCard1.flip();
+            selectedCard1 = null;
+        }
+        else if (selectedCard1 != null && selectedCard2 != null) {
+            selectedCard2.flip();
+            selectedCard1.flip();
+            selectedCard2 = null;
+            selectedCard1 = null;
+            isBusy = false;
+        }else{
+            return;
+        }
+    }
+
+    public void newGame(View view){
+        Intent newIntent = new Intent(Game.this, Game.class);
+        newIntent.putExtra("numofElements", numofElements);
+        startActivity(newIntent);
+    }
+    public void endGame(View view) {
+        Intent newIntent = new Intent(Game.this, WinGameActivity.class);
+        newIntent.putExtra("Score", score);
+        startActivity(newIntent);
+    }
+
 
 
     @Override
@@ -217,7 +269,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                selectedCard1.setEnabled(false);
                currentCard.setEnabled(false);
                selectedCard1 = null;
-               score++;
+               score = score + 2;
                winCount++;
                if(winCount == (numofElements/2)){
                    Intent newIntent = new Intent(Game.this, WinGameActivity.class);
@@ -236,18 +288,6 @@ public class Game extends AppCompatActivity implements View.OnClickListener {
                selectedCard2.flip();
                isBusy = true;
 
-               final Handler handler = new Handler();
-
-               handler.postDelayed(new Runnable() {
-                   @Override
-                   public void run() {
-                       selectedCard2.flip();
-                       selectedCard1.flip();
-                       selectedCard2 = null;
-                       selectedCard1 = null;
-                       isBusy = false;
-                   }
-               }, 500);
            }
        }
        else{

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:configChanges="orientation|screenSize"
     tools:context="com.example.josue.cardgame.Game">
 
     <GridLayout
@@ -29,6 +28,8 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:onClick="tryAgain"
         app:layout_constraintBottom_toTopOf="@+id/newgame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scoreTitle"
@@ -40,6 +41,8 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:onClick="newGame"
         app:layout_constraintBottom_toTopOf="@+id/endgame"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="New Game" />
@@ -50,6 +53,8 @@
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:onClick="endGame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="End Game" />

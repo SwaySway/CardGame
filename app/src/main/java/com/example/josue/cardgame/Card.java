@@ -23,6 +23,7 @@ public class Card extends Button{
 
     protected Drawable cardfront;
     protected Drawable cardback;
+    private GridLayout.LayoutParams tempParams;
 
     public Card (Context context, int r, int c, int id){
 
@@ -37,13 +38,30 @@ public class Card extends Button{
         //Sets Card to the cardback
         setBackground(cardback);
         //Determines layout within the grid
-        GridLayout.LayoutParams tempParams = new GridLayout.LayoutParams(GridLayout.spec(r), GridLayout.spec(c));
+        tempParams = new GridLayout.LayoutParams(GridLayout.spec(r), GridLayout.spec(c));
         //Sets Card Size
         tempParams.width = (int) getResources().getDisplayMetrics().density * 100;
         tempParams.height = (int) getResources().getDisplayMetrics().density * 125;
 
         setLayoutParams(tempParams);
     }
+
+    public void changetoLandscape(int r, int c){
+        tempParams = new GridLayout.LayoutParams(GridLayout.spec(r), GridLayout.spec(c));
+        tempParams.width = (int) getResources().getDisplayMetrics().density * 75;
+        tempParams.height = (int) getResources().getDisplayMetrics().density * 100;
+        setLayoutParams(tempParams);
+    }
+
+    public void changetoPortait(int r,int c){
+        tempParams = new GridLayout.LayoutParams(GridLayout.spec(r), GridLayout.spec(c));
+        tempParams.width = (int) getResources().getDisplayMetrics().density * 100;
+        tempParams.height = (int) getResources().getDisplayMetrics().density * 125;
+        setLayoutParams(tempParams);
+    }
+
+
+
 
 
     public boolean isMatched(){
