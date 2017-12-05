@@ -26,16 +26,17 @@ public class MainMenu extends AppCompatActivity {
         //Changed text for on and off
         musicToggle.setTextOff("Music Off");
         musicToggle.setTextOn("Music On");
+        final Intent musicStuff = new Intent(MainMenu.this, BGMService.class);
 
         musicToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
                     //music on
-                    startService(new Intent(this, BGMService.class));
+                    startService(musicStuff);
                 }else{
                     // music off
-                    // stopService()
+                    stopService(musicStuff);
                 }
             }
         });
