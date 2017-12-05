@@ -38,9 +38,15 @@ public class Tab3Fragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab3_fragment, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.tab3_fragment, container, false);
+        return view;
     }
+//    @Nullable
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+//        return inflater.inflate(R.layout.tab3_fragment, container, false);
+//    }
 
 //    @Override
 //    public void onCreate(Bundle savedInstanceState) {

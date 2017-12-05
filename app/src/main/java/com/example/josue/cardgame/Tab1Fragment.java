@@ -36,11 +36,17 @@ public class Tab1Fragment extends Fragment{
         return new Tab1Fragment();
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab1_fragment, container, false);
-    }
+//    @Nullable
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+//        return inflater.inflate(R.layout.tab1_fragment, container, false);
+//    }
+@Nullable
+@Override
+public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.tab1_fragment, container, false);
+        return view;
+}
 
 //        int score = getIntent().getIntExtra("Score", 0);
 //        String name = getIntent().getStringExtra("NAME");
