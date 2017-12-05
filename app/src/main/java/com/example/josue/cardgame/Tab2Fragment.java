@@ -2,6 +2,7 @@ package com.example.josue.cardgame;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -17,7 +18,7 @@ import java.util.Collections;
  * Created by kor3a on 12/5/17.
  */
 
-public class Tab2Fragment extends Fragment {
+public class Tab2Fragment extends AppCompatActivity {
     private Button back;
     private ArrayList<Score> scores = new ArrayList<Score>();
 

@@ -3,6 +3,7 @@ package com.example.josue.cardgame;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ import java.util.Collections;
  * Created by kor3a on 12/4/17.
  */
 
-public class Tab1Fragment extends Fragment {
+public class Tab1Fragment extends AppCompatActivity{
 
     private Button back;
     private ArrayList<Score> scores = new ArrayList<Score>();
@@ -32,6 +33,7 @@ public class Tab1Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_highscore);
 
         TextView highscoreLabel = (TextView) findViewById(R.id.highscoreLabel1);

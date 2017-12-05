@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
 public class MainMenu extends AppCompatActivity {
@@ -25,6 +26,16 @@ public class MainMenu extends AppCompatActivity {
         //Changed text for on and off
         musicToggle.setTextOff("Music Off");
         musicToggle.setTextOn("Music On");
+        musicToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked){
+                    //music on
+                }else{
+                    //music off
+                }
+            }
+        });
     }
 
 
@@ -33,6 +44,11 @@ public class MainMenu extends AppCompatActivity {
         Intent gameIntent = new Intent(MainMenu.this, GameDifficultyActivity.class);
         startActivity(gameIntent);
     }
+
+    public void showHighscores(View view){
+        //launches intent into highscores
+    }
+
 
 
 

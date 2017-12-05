@@ -32,9 +32,9 @@ public class Highscore extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager){
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Tab1Fragment(), "2X2");
-        adapter.addFragment(new Tab2Fragment(), "4X4");
-        adapter.addFragment(new Tab3Fragment(), "8X8");
+//        adapter.addFragment(new Tab1Fragment(), "2X2");
+//        adapter.addFragment(new Tab2Fragment(), "4X4");
+//        adapter.addFragment(new Tab3Fragment(), "8X8");
         viewPager.setAdapter(adapter);
     }
 }
