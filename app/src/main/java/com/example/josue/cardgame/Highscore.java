@@ -23,34 +23,37 @@ public class Highscore extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-
-        setupViewPager();
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_highscore);
+//        setContentView(R.layout.activity_main);
+//        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(mToolbar);
 //
-//        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-//
-//        mViewPager = (ViewPager) findViewById(R.id.container);
-//        setupViewPager(mViewPager);
-    }
+//        setupViewPager();
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_highscore);
 
-    private void setupViewPager(){
+        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        mViewPager.setAdapter(adapter);
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        setupViewPager(mViewPager);
 
         TabLayout mTabLayout = (TabLayout) findViewById(R.id.tab);
         mTabLayout.setupWithViewPager(mViewPager);
 
+    }
+
+    private void setupViewPager(ViewPager viewPager){
+
+//        mViewPager = (ViewPager) findViewById(R.id.pager);
 //        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-////        adapter.addFragment(new Tab1Fragment(), "2X2");
-////        adapter.addFragment(new Tab2Fragment(), "4X4");
-////        adapter.addFragment(new Tab3Fragment(), "8X8");
-//        viewPager.setAdapter(adapter);
+//        mViewPager.setAdapter(adapter);
+//
+
+
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
+        adapter.addFragment(new Tab1Fragment(), "2X2");
+        adapter.addFragment(new Tab2Fragment(), "4X4");
+        adapter.addFragment(new Tab3Fragment(), "8X8");
+        viewPager.setAdapter(adapter);
     }
 }
