@@ -103,7 +103,7 @@ public class WinGameActivity extends AppCompatActivity {
 
         FileOutputStream outputStream;
 
-        File file = new File(getFilesDir(),"mydir");
+        File file = new File(getFilesDir()+"/"+filename);
         if(!file.exists()){
             file.mkdir();
         }
@@ -111,10 +111,10 @@ public class WinGameActivity extends AppCompatActivity {
 
         try{
 
-            File newFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), filename);
-            FileOutputStream fos = new FileOutputStream(newFile);
+            FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream os = new ObjectOutputStream(fos);
-            os.writeObject(scores.add(new Score(score, name)));
+            scores.add(new Score(score, name));
+            os.writeObject(scores);
             os.close();
             fos.close();
         }catch (Exception e){

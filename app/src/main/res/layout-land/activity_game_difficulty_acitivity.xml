@@ -40,14 +40,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:clickable="true"
+        android:focusable="true"
         android:onClick="launchGame"
-        android:text="@string/go"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.921"
         app:layout_constraintStart_toEndOf="@+id/seekText"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.497"
-        tools:text="Go!" android:focusable="true" />
+        tools:text="Go!" />
 
 </android.support.constraint.ConstraintLayout>

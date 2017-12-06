@@ -89,7 +89,7 @@ public class Highscore extends AppCompatActivity {
 
     public void loadScore(){
         try {
-            File newFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), filename);
+            File newFile = new File(getFilesDir()+"/"+filename);
             ois = new ObjectInputStream(new FileInputStream(newFile));
             scores = (ArrayList<Score>) ois.readObject();
         } catch (IOException e) {
