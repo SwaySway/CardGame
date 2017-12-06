@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,42 +21,63 @@ import java.util.Collections;
 
 public class Highscore extends AppCompatActivity {
 
-    private SectionsPageAdapter mSectionsPageAdapter;
-    private ViewPager mViewPager;
+    private ArrayList<Score> scores = new ArrayList<Score>();
+    private ObjectOutputStream oos = null;
+    private ObjectInputStream ois = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(mToolbar);
-//
-//        setupViewPager();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
 
-        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+        TextView highScores = (TextView) findViewById(R.id.highScores);
+        Button back = (Button) findViewById(R.id.backButton);
 
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        setupViewPager(mViewPager);
-
-        TabLayout mTabLayout = (TabLayout) findViewById(R.id.tab);
-        mTabLayout.setupWithViewPager(mViewPager);
+        int score = getIntent().getIntExtra("SCORE", 0);
+        String name = getIntent().getStringExtra("NAME");
+//        loadScore();
+        scores.add(new Score(score, name));
+        highScores.setText(getHighscores());
 
     }
 
-    private void setupViewPager(ViewPager viewPager){
+    public String getHighscores(){
+        String highscores = "";
+        int count = 5;
 
-//        mViewPager = (ViewPager) findViewById(R.id.pager);
-//        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-//        mViewPager.setAdapter(adapter);
-//
+        ArrayList<Score> scores = getScores();
 
+        for(int i = 0; i < count; i++){
+            highscores += (i + 1) + ".\t" + scores.get(i).getName() + "---" + scores.get(i).getScore();
+        }
+        return highscores;
+    }
 
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Tab1Fragment(), "2X2");
-        adapter.addFragment(new Tab2Fragment(), "4X4");
-        adapter.addFragment(new Tab3Fragment(), "8X8");
-        viewPager.setAdapter(adapter);
+    public ArrayList<Score> getScores(){
+        loadScore();
+        ScoreComparator comparator = new ScoreComparator();
+        Collections.sort(scores, comparator);
+        return scores;
+    }
+
+    public void loadScore(){
+        try {
+            ois = new ObjectInputStream(new FileInputStream("assets/highscore.txt"));
+            scores = (ArrayList<Score>) ois.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }finally{
+            try{
+                if(oos != null){
+                    oos.flush();
+                    oos.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
