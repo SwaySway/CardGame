@@ -1,11 +1,13 @@
 package com.example.josue.cardgame;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -24,6 +26,7 @@ public class Highscore extends AppCompatActivity {
     private ArrayList<Score> scores = new ArrayList<Score>();
     private ObjectOutputStream oos = null;
     private ObjectInputStream ois = null;
+    private Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +35,15 @@ public class Highscore extends AppCompatActivity {
         setContentView(R.layout.activity_highscore);
 
         TextView highScores = (TextView) findViewById(R.id.highScores);
-        Button back = (Button) findViewById(R.id.backButton);
+        back = (Button) findViewById(R.id.backButton);
+
+        back.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(Highscore.this, MainMenu.class);
+                startActivity(intent);
+            }
+        });
 
         int score = getIntent().getIntExtra("SCORE", 0);
         String name = getIntent().getStringExtra("NAME");
