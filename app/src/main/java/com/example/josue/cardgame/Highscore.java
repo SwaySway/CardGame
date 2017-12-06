@@ -1,5 +1,6 @@
 package com.example.josue.cardgame;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -27,6 +28,11 @@ public class Highscore extends AppCompatActivity {
     private ObjectOutputStream oos = null;
     private ObjectInputStream ois = null;
     private Button back;
+    private Context context;
+    private String filename;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,8 @@ public class Highscore extends AppCompatActivity {
 
         TextView highScores = (TextView) findViewById(R.id.highScores);
         back = (Button) findViewById(R.id.backButton);
+        int cards = getIntent().getIntExtra("NumofCards", 0);
+        filename = "highscore"+String.valueOf(cards)+".txt";
 
         back.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -74,7 +82,7 @@ public class Highscore extends AppCompatActivity {
 
     public void loadScore(){
         try {
-            ois = new ObjectInputStream(new FileInputStream("assets/highscore.txt"));
+            ois = new ObjectInputStream(new FileInputStream(filename));
             scores = (ArrayList<Score>) ois.readObject();
         } catch (IOException e) {
             e.printStackTrace();
