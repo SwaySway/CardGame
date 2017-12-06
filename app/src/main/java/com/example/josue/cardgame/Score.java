@@ -1,5 +1,7 @@
 package com.example.josue.cardgame;
 
+import org.json.*;
+
 import java.io.Serializable;
 
 /**
@@ -22,4 +24,14 @@ public class Score implements Serializable{
     public int getScore(){
         return score;
     }
+
+    public JSONObject toJSON() throws JSONException{
+        JSONObject json = new JSONObject();
+        json.put("id", name);
+        json.put("score", score);
+        return json;
+    }
+
+
+
 }

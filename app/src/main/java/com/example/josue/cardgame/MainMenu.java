@@ -51,7 +51,8 @@ public class MainMenu extends AppCompatActivity {
 
     public void showHighscores(View view){
         //launches intent into highscores
-        Intent hsIntent = new Intent(MainMenu.this, Highscore.class);
+        Intent hsIntent = new Intent(MainMenu.this, GameDifficultyActivity.class);
+        hsIntent.putExtra("State", 1);
         startActivity(hsIntent);
     }
 

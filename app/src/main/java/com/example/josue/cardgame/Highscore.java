@@ -2,6 +2,7 @@ package com.example.josue.cardgame;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Environment;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -42,7 +44,7 @@ public class Highscore extends AppCompatActivity {
 
         TextView highScores = (TextView) findViewById(R.id.highScores);
         back = (Button) findViewById(R.id.backButton);
-        int cards = getIntent().getIntExtra("NumofCards", 0);
+        int cards = getIntent().getIntExtra("NumofCards", 4);
         filename = "highscore"+String.valueOf(cards)+".txt";
 
         back.setOnClickListener(new View.OnClickListener(){
@@ -68,7 +70,12 @@ public class Highscore extends AppCompatActivity {
         ArrayList<Score> scores = getScores();
 
         for(int i = 0; i < count; i++){
-            highscores += (i + 1) + ".\t" + scores.get(i).getName() + "---" + scores.get(i).getScore();
+            if(i >= scores.size()){
+                return highscores;
+            }else{
+                highscores += (i + 1) + ".\t" + scores.get(i).getName() + "---" + scores.get(i).getScore();
+
+            }
         }
         return highscores;
     }
@@ -82,7 +89,8 @@ public class Highscore extends AppCompatActivity {
 
     public void loadScore(){
         try {
-            ois = new ObjectInputStream(new FileInputStream(filename));
+            File newFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), filename);
+            ois = new ObjectInputStream(new FileInputStream(newFile));
             scores = (ArrayList<Score>) ois.readObject();
         } catch (IOException e) {
             e.printStackTrace();

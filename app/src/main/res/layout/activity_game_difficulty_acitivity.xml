@@ -12,27 +12,29 @@
         android:layout_height="103dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
         android:scrollbarSize="50dp"
         android:thumb="@android:drawable/btn_star_big_on"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekText" />
+        tools:layout_editor_absoluteY="204dp" />
 
     <TextView
         android:id="@+id/seekText"
         android:layout_width="109dp"
         android:layout_height="57dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="124dp"
         android:includeFontPadding="false"
         android:textAlignment="center"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/seekgamedifficulty"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="160dp"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="4" />
 
     <Button
@@ -43,12 +45,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:onClick="launchGame"
         android:clickable="true"
+        android:onClick="launchGame"
+        android:text="Go!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekgamedifficulty"
-        tools:text="Start!" />
+        tools:text="Go!" />
 
 </android.support.constraint.ConstraintLayout>
